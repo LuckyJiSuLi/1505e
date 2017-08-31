@@ -15,6 +15,24 @@ import vueAxios from "vue-axios"
 
 Vue.use(vueAxios, axios)
 
+
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+
+Vue.use(ElementUI)
+
+import echarts from "echarts"
+
+Vue.use({
+    install(Vue) {
+        Object.defineProperty(Vue.prototype, '$echarts', {
+            value: echarts
+        })
+
+    }
+})
+
+
 import moduleA from "./store/module1"
 
 

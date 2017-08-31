@@ -3,6 +3,8 @@
         <router-link to="/add1">add1</router-link>
         <router-link to="/add2">add2</router-link>
         <router-link to="/ajax">ajax</router-link>
+        <router-link to="/element_ui">element_ui</router-link>
+        <router-link to="/echarts">echarts</router-link>
   </div>
 </template>
 

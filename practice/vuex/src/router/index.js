@@ -4,6 +4,8 @@ import index from '@/components/index'
 import add1 from '@/components/add1'
 import add2 from '@/components/add2'
 import ajax from '@/components/ajax'
+import element_ui from '@/components/element_ui'
+import echarts from '@/components/echarts'
 
 Vue.use(Router)
 
@@ -27,6 +29,16 @@ export default new Router({
             path: '/ajax',
             name: 'ajax',
             component: ajax
+        },
+        {
+            path: '/element_ui',
+            name: 'element_ui',
+            component: element_ui
+        },
+        {
+            path: '/echarts',
+            name: 'echarts',
+            component: echarts
         }
     ]
 })
