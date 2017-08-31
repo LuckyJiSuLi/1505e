@@ -6,6 +6,7 @@ import add2 from '@/components/add2'
 import ajax from '@/components/ajax'
 import element_ui from '@/components/element_ui'
 import echarts from '@/components/echarts'
+import axios from '@/components/axios'
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ export default new Router({
             path: '/echarts',
             name: 'echarts',
             component: echarts
+        },
+        {
+            path: '/axios',
+            name: 'axios',
+            component: axios
         }
     ]
 })

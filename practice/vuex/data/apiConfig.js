@@ -23,6 +23,12 @@ module.exports = [{
             resData(res, { msg: "haha" })
         }
     },
+    {
+        route: '/users',
+        handle: function(req, res, next, url) {
+            resData(res, { msg: "users" })
+        }
+    },
     // {
     //     route: '/api/list',
     //     handle: function(req, res, next, url) {

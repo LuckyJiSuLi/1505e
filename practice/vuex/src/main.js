@@ -14,7 +14,7 @@ import axios from "axios"
 import vueAxios from "vue-axios"
 
 Vue.use(vueAxios, axios)
-
+import "./mock/index"
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
@@ -22,13 +22,15 @@ import 'element-ui/lib/theme-default/index.css'
 Vue.use(ElementUI)
 
 import echarts from "echarts"
-
+import jquery from "jquery"
 Vue.use({
     install(Vue) {
         Object.defineProperty(Vue.prototype, '$echarts', {
-            value: echarts
-        })
-
+                value: echarts
+            }),
+            Object.defineProperty(Vue.prototype, '$', {
+                value: jquery
+            })
     }
 })
 

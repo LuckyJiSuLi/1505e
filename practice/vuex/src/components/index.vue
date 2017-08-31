@@ -5,6 +5,7 @@
         <router-link to="/ajax">ajax</router-link>
         <router-link to="/element_ui">element_ui</router-link>
         <router-link to="/echarts">echarts</router-link>
+        <router-link to="/axios">axios</router-link>
   </div>
 </template>
 
