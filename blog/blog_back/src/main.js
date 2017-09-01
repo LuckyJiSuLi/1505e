@@ -21,7 +21,19 @@ import 'element-ui/lib/theme-default/index.css'
 
 Vue.use(ElementUI)
 
+router.beforeEach(function(to, from, next) {
+    console.log()
+    if (to.name == "login") {
+        next()
+    } else {
+        if (sessionStorage.getItem("userId")) {
+            next()
+        } else {
+            next(false)
+        }
+    }
 
+})
 
 
 /* eslint-disable no-new */

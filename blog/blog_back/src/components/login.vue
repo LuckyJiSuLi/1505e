@@ -4,16 +4,23 @@
             <h2>
                 个人博客:
             </h2>
-            <p v-focus:test="loginname">
-                <latel>账号：</latel>
-                <input type="text" placeholder="请输入账号/手机号" v-model.lazy="loginname.val">
-                 <i style="color:red;display:none">{{loginname.msg}}</i>
-            </p>
-            <p v-focus:required="loginpw">
-                <latel>密码:</latel>
-                <input type="password" placeholder="请输入密码" v-model.lazy="loginpw.val">
-                <i style="color:red;display:none">{{loginpw.msg}}</i>
-            </p>
+            <ul>
+                <li v-focus:test="loginname">
+                <p>
+                    <label>账号：</label>
+                <input type="text" placeholder="请输入账号" v-model.lazy="loginname.val" @blur="fn(loginname)">
+                </p>
+                 <i style="color:red;display:block" v-if="loginname.state">{{loginname.msg}}</i>
+            </li>
+            <li v-focus:required="loginpw">
+                <p>
+                    <label>密码:</label>
+                <input type="password" placeholder="请输入密码" v-model.lazy="loginpw.val" @blur="fn(loginpw)">
+                </p>
+                <i style="color:red;display:block" v-if="loginpw.state">{{loginpw.msg}}</i>
+            </li>
+            </ul>
+            
             <div>
                 <button @click="login">
                     登录
@@ -25,14 +32,15 @@
 
 <script>
     export default {
-        name: 'login',
+        // name: 'login',
         data() {
             return {
                 loginname: {
                     val: "",
                     msgread: "您输入的姓名不符合中文格式",
                     msg: "您输入的姓名不符合中文格式",
-                    test: /^[a-zA-z]+$/
+                    test: /^[a-zA-z]+$/,
+                    state: false
                 },
                 // phonedata: {
                 //     val: "",
@@ -46,44 +54,57 @@
                     msgread: "您输入的密码格式不对",
                     blur: false,
                     msg: "您输入的密码格式不对",
-                    test: /^1[3|4|5|8][0-9]\d{4,8}$/
+                    test: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/,
+                    state: false
                 }
             }
         },
         methods: {
             login() {
-                this.axios.post("/api/back/login", {
-                    params: {
-                        loginname: this.loginname,
-                        loginpw: this.loginpw
-                    }
-                }).then(function(data) {
-                    console.log(data)
-                })
+                // 判断是否值是否正确
+                var _this = this
+                if (!this.loginpw.state && !this.loginname.state && this.loginpw.val != "" && this.loginname.val != "") {
+                    this.axios.post("http://localhost:3000/api/back", {
+                        params: {
+                            loginname: this.loginname.val,
+                            loginpw: this.loginpw.val
+                        }
+                    }).then(function(data) {
+                        console.log(data)
+                        _this.$message(data.data.msg);
+                        if (data.data.code == "1001") {
+                            sessionStorage.setItem("userId", data.data.userid);
+                            sessionStorage.setItem("username", _this.loginname.val);
+                            _this.$router.push("/main")
+                        }
+                    })
+                } else {
+                    alert("请正确填写用户名密码")
+                }
+
+            },
+            // 必填项的验证
+            fn(val) {
+                val.blur = true
             }
         },
         directives: {
             focus: {
-
                 componentUpdated(el, option, vnode, oldVnode) {
-
-                    var $p = el.getElementsByTagName("i")[0]
                     var $testState = option.value.test.test(option.value.val)
-
-
                     if (option.value.val != "") {
                         if ($testState) {
-                            $p.style.display = "none"
+                            option.value.state = false
                         } else {
-                            $p.style.display = "block"
+                            option.value.state = true
                         }
                         option.value.msg = option.oldValue.msgread
                     } else {
                         if (option.arg == "required" && option.value.blur) {
-                            $p.style.display = "block"
+                            option.value.state = true
                             option.value.msg = "不能为空"
                         } else {
-                            $p.style.display = "none"
+                            option.value.state = false
                         }
 
                     }
@@ -116,6 +137,12 @@
         color: #ef5b00;
         line-height: 85px;
         padding-left: 30px;
+    }
+    
+    .content li i {
+        font-style: normal;
+        font-size: 14px;
+        padding: 0 50px;
     }
     
     .content p {

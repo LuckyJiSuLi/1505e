@@ -5,7 +5,7 @@
                 <p>个人博客</p>
             </div>
             <div class="welcome">
-                欢迎'三岁先生'登录
+                当前登录账户：{{username}}
             </div>
         </header>
         <main>
@@ -24,12 +24,16 @@
     export default {
         data() {
             return {
-                activeNames: ['1']
+                activeNames: ['1'],
+                username: ""
             };
         },
         components: {
             pageList,
             pageContent
+        },
+        mounted() {
+            this.username = sessionStorage.getItem("username")
         }
     }
 </script>
