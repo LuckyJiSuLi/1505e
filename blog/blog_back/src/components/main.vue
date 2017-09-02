@@ -13,14 +13,17 @@
                 <page-list></page-list>
             </div>
             <div class="pageContent">
-                <page-content></page-content>
+                 <router-view ></router-view>
             </div>
+           
+            <!--<div class="pageContent">
+                <page-content></page-content>
+            </div>-->
         </main>
     </div>
 </template>
 <script>
     import pageList from './page/main_left.vue'
-    import pageContent from './page/main_right'
     export default {
         data() {
             return {
@@ -29,8 +32,7 @@
             };
         },
         components: {
-            pageList,
-            pageContent
+            pageList
         },
         mounted() {
             this.username = sessionStorage.getItem("username")

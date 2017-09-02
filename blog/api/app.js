@@ -32,8 +32,8 @@ app.all('*', function(req, res, next) {
 });
 
 
-app.use('/', index);
-app.use('/users', users);
+// app.use('/', index);
+// app.use('/users', users);
 
 var api = require("./api/back/index")
 app.use("/api/back", api)

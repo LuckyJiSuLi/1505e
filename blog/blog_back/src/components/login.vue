@@ -64,11 +64,9 @@
                 // 判断是否值是否正确
                 var _this = this
                 if (!this.loginpw.state && !this.loginname.state && this.loginpw.val != "" && this.loginname.val != "") {
-                    this.axios.post("http://localhost:3000/api/back", {
-                        params: {
-                            loginname: this.loginname.val,
-                            loginpw: this.loginpw.val
-                        }
+                    this.axios.post("/api/back", {
+                        loginname: this.loginname.val,
+                        loginpw: this.loginpw.val
                     }).then(function(data) {
                         console.log(data)
                         _this.$message(data.data.msg);
