@@ -18,6 +18,19 @@
 
     <el-menu-item index="2-2">增加二级分类</el-menu-item>
 </el-submenu>
+<el-submenu index="3">
+    <template slot="title"><i class="el-icon-setting"></i>接口管理</template>
+
+    <router-link to="/main/add_api">
+        <el-menu-item index="3-1">增加接口文档</el-menu-item>
+    </router-link>
+    <router-link to="/main/api_list_font">
+        <el-menu-item index="3-2">前台接口列表</el-menu-item>
+    </router-link>
+    <router-link to="/main/api_list_back">
+        <el-menu-item index="3-3">后台接口列表</el-menu-item>
+    </router-link>
+</el-submenu>
 </el-menu>
 </el-col>
 </el-row>

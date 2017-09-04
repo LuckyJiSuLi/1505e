@@ -5,8 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+
 
 var app = express();
 
@@ -35,8 +34,18 @@ app.all('*', function(req, res, next) {
 // app.use('/', index);
 // app.use('/users', users);
 
-var api = require("./api/back/index")
-app.use("/api/back", api)
+// 后台接口文档列表与上传
+var apilist = require("./api/back/apilist")
+app.use("/api/apilist", apilist)
+
+// 后台接口配置文章分类操作
+var classdone = require("./api/back/class")
+app.use("/api/back_class", classdone)
+
+// 后台接口配置文章操作
+var article = require("./api/back/article")
+app.use("/api/back_article", article)
+
 
 
 
