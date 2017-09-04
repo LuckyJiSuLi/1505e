@@ -133,7 +133,7 @@
             return {
                 itemId: "", //删除时使用的id
                 dialogVisible: false, //删除弹窗的控制
-                currentPage4: 1, //当前显示页
+                currentPage4: 0, //当前显示页
                 alldata: [], //请求的元数据
                 everypagelist: 5, //默认每页显示条数
                 everypage: [] //每页的数据
