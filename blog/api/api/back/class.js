@@ -112,20 +112,23 @@ router.post("/add_class_one", function(req, res, next) {
         })
     }).then(function(data) {
         query(createTable, function(err, rows, fields) {
-            if (err) {
-                res.send({
-                    code: "1015",
-                    msg: "创建表失败"
-                })
-            } else {
-                res.send({
-                    code: "1014",
-                    msg: "数据插入成功"
-                })
+            try {
+                if (err) {
+                    res.send({
+                        code: "1015",
+                        msg: "创建表失败"
+                    })
+                } else {
+                    res.send({
+                        code: "1014",
+                        msg: "数据插入成功"
+                    })
+                }
+            } catch (err) {
+                console.log(err)
             }
 
         })
-
     }, function(err) {
         res.send({
             code: "1013",
@@ -141,23 +144,29 @@ router.post("/add_class_one", function(req, res, next) {
 router.get("/select_one_class", function(req, res, next) {
     var sql = "select * from one_class"
     query(sql, function(err, rows, fields) {
-        rows.map(function(i) {
-            return i.time = moment(i.time).format('YYYY-MM-DD HH:mm:ss')
-        });
-        if (err) {
-            res.send({
-                code: "1022",
-                data: null,
-                msg: "查询失败"
-            })
-        } else {
-            res.send({
-                code: "1021",
-                data: rows,
-                msg: "数据查询成功"
-            })
+        try {
+            rows.map(function(i) {
+                return i.time = moment(i.time).format('YYYY-MM-DD HH:mm:ss')
+            });
+            if (err) {
+                res.send({
+                    code: "1022",
+                    data: null,
+                    msg: "查询失败"
+                })
+            } else {
+                res.send({
+                    code: "1021",
+                    data: rows,
+                    msg: "数据查询成功"
+                })
+            }
+        } catch (err) {
+            console.log(err)
         }
+
     })
+
 })
 
 //二级类名的添加
@@ -270,19 +279,23 @@ router.post("/amend_class_one", function(req, res, next) {
             msg: "分类一英文标识冲突"
         })
     }).then(function(data) {
-        query(amendTable, function(err, rows, fields) {
-            if (err) {
-                res.send({
-                    code: "1051",
-                    msg: "修改表失败"
-                })
-            } else {
-                res.send({
-                    code: "1052",
-                    msg: "修改表成功"
-                })
-            }
 
+        query(amendTable, function(err, rows, fields) {
+            try {
+                if (err) {
+                    res.send({
+                        code: "1051",
+                        msg: "修改表失败"
+                    })
+                } else {
+                    res.send({
+                        code: "1052",
+                        msg: "修改表成功"
+                    })
+                }
+            } catch (err) {
+                console.log(err)
+            }
         })
 
 
@@ -291,6 +304,8 @@ router.post("/amend_class_one", function(req, res, next) {
             code: "1053",
             msg: "修改表失败"
         })
+    }).catch(function(err) {
+        console.log(err)
     })
 })
 
@@ -306,7 +321,7 @@ router.post("/amend_class_two", function(req, res, next) {
     }, function(err) {
         res.send({
             code: "1060",
-            msg: "分类一英文标识冲突"
+            msg: "分类二英文标识冲突"
         })
     }).then(function(data) {
         res.send({
@@ -319,6 +334,8 @@ router.post("/amend_class_two", function(req, res, next) {
             code: "1063",
             msg: "修改表失败"
         })
+    }).catch(function(err) {
+        console.log(err)
     })
 })
 
@@ -340,6 +357,8 @@ router.post("/delete_one", function(req, res, next) {
             code: "1070",
             msg: "删除数据失败"
         })
+    }).catch(function(err) {
+        console.log(err)
     })
 })
 

@@ -37,6 +37,17 @@ module.exports = {
                 pathRewrite: {
                     '^/api': '/api'
                 }
+            },
+            // 配置ueditor的图片上传服务器预览路径
+            '/ueditor': {
+                //后台接口地址
+                target: 'http://localhost:9999',
+                //这里可以模拟服务器进行get和post参数的传递
+                changeOrigin: true,
+                //前端所有的/api请求都会请求到后台的/api路径之下
+                pathRewrite: {
+                    '^/ueditor': '/ueditor'
+                }
             }
 
         },

@@ -5,9 +5,13 @@
     <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
       <el-submenu index="1">
         <template slot="title"><i class="el-icon-menu"></i>文章管理</template>
+<router-link to="/main/add_article">
+    <el-menu-item index="1-1">添加文章</el-menu-item>
+</router-link>
+<router-link to="/main/article_list">
+    <el-menu-item index="1-2">文章列表</el-menu-item>
+</router-link>
 
-<el-menu-item index="1-1">添加文章</el-menu-item>
-<el-menu-item index="1-2">文章列表</el-menu-item>
 </el-submenu>
 <el-submenu index="2">
     <template slot="title"><i class="el-icon-setting"></i>分类管理</template>
@@ -15,8 +19,13 @@
     <router-link to="/main/add_class_one">
         <el-menu-item index="2-1">增加一级分类</el-menu-item>
     </router-link>
+    <router-link to="/main/add_class_two">
+        <el-menu-item index="2-2">增加二级分类</el-menu-item>
+    </router-link>
+    <router-link to="/main/class_list">
+        <el-menu-item index="2-3">分类列表</el-menu-item>
+    </router-link>
 
-    <el-menu-item index="2-2">增加二级分类</el-menu-item>
 </el-submenu>
 <el-submenu index="3">
     <template slot="title"><i class="el-icon-setting"></i>接口管理</template>

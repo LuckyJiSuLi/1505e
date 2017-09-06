@@ -14,6 +14,15 @@ import api_amend from '@/components/page/api/api_amend'
 
 // 分类管理
 import add_class_one from '@/components/page/class/add_class_one'
+import add_class_two from '@/components/page/class/add_class_two'
+import class_list from '@/components/page/class/class_list'
+import amend_class from '@/components/page/class/amend_class'
+// 文章管理
+
+
+import add_article from '@/components/page/article/add_article'
+import article_list from '@/components/page/article/article_list'
+import amend_article from '@/components/page/article/amend_article'
 
 
 
@@ -60,6 +69,30 @@ export default new Router({
             path: 'api_amend',
             name: 'api_amend',
             component: api_amend,
+        }, {
+            path: 'add_class_two',
+            name: 'add_class_two',
+            component: add_class_two,
+        }, {
+            path: 'class_list',
+            name: 'class_list',
+            component: class_list,
+        }, {
+            path: 'amend_class',
+            name: 'amend_class',
+            component: amend_class,
+        }, {
+            path: 'add_article',
+            name: 'add_article',
+            component: add_article,
+        }, {
+            path: 'article_list',
+            name: 'article_list',
+            component: article_list,
+        }, {
+            path: 'amend_article',
+            name: 'amend_article',
+            component: amend_article,
         }]
     }]
 })

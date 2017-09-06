@@ -47,6 +47,7 @@ router.get("/getClass", function(req, res, next) {
 // 文章添加接口
 router.post("/addArticle", function(req, res, next) {
     var sql = `insert into ${req.body.enname_one}(id,oneId,twoId,article_name,editer,content,time,visitors,daodu,imgsrc,recommend,art_show) values('${generateUUID()}','${req.body.oneId}','${req.body.twoId}','${req.body.article_name}','${req.body.editer}','${req.body.content}','${req.body.time}',0,'${req.body.daodu}','${req.body.imgsrc}','${req.body.recommend}','${req.body.art_show}')`
+    console.log(sql)
         // var updateClassTwo = `update set two_class `
     query(sql, function(err, rows, fields) {
         if (err) {
@@ -83,8 +84,16 @@ router.get("/getArticle", function(req, res, next) {
         console.log(selectArtSql)
             // 所有表数据的查询
         query(selectArtSql, function(err, rows, fields) {
+            // var rowsdata = []
             rows.map(function(i) {
-                return i.time = moment(i.time).format('YYYY-MM-DD HH:mm:ss')
+
+                i.time = moment(i.time).format('YYYY-MM-DD HH:mm:ss')
+                data.forEach(function(j) {
+                    if (j.id == i.oneId) {
+                        i.enname_one = j.enname
+                    }
+                })
+                return i
             });
             if (err) {
                 res.send({
@@ -93,6 +102,7 @@ router.get("/getArticle", function(req, res, next) {
                     msg: "查询失败"
                 })
             } else {
+                console.log(rows)
                 res.send({
                     code: "3022",
                     data: rows,
