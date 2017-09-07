@@ -92,26 +92,68 @@ router.get("/getArticleAll", function(req, res, next) {
 
 // 根据不同的一级类名获取相应的二级类名
 router.post("/getClassTwo", function(req, res, next) {
-    var sql = `select * from two_class where parent_id='${req.body.oneId}'`
-    query(sql, function(err, rows, fields) {
-        if (err) {
-            res.send({
-                code: "6021",
-                msg: "数据查询失败"
-            })
-        } else {
+        var sql = `select * from two_class where parent_id='${req.body.oneId}'`
+        query(sql, function(err, rows, fields) {
+            if (err) {
+                res.send({
+                    code: "6021",
+                    msg: "数据查询失败"
+                })
+            } else {
+                rows.map(function(i) {
+                    return i.time = moment(i.time).format('YYYY-MM-DD HH:mm:ss')
+                });
+                res.send({
+                    code: "6020",
+                    msg: "数据查询成功",
+                    data: rows
+                })
+            }
+
+        })
+    })
+    // 根据id获取文章
+router.get("/getArticle", function(req, res, next) {
+    var sqlone = `select * from one_class`
+
+    select_Class(req, res, next, sqlone).then(function(data) {
+        // 多章表sql的拼接
+        var selectArtSql = `select * from (`
+        data.forEach(function(i, index) {
+            if (index < (data.length - 1)) {
+                selectArtSql += `select * from ${i.enname} UNION ALL`
+            } else {
+                selectArtSql += ` select * from ${i.enname})as tabel_all where id='${req.query.id}' and art_show=1 order by time desc`
+            }
+
+        }, this);
+        console.log(selectArtSql)
+            // 所有表数据的查询
+        query(selectArtSql, function(err, rows, fields) {
             rows.map(function(i) {
                 return i.time = moment(i.time).format('YYYY-MM-DD HH:mm:ss')
             });
-            res.send({
-                code: "6020",
-                msg: "数据查询成功",
-                data: rows
-            })
-        }
-
+            if (err) {
+                res.send({
+                    code: "6031",
+                    data: null,
+                    msg: "查询失败"
+                })
+            } else {
+                res.send({
+                    code: "6030",
+                    data: rows[0],
+                    msg: "查询成功"
+                })
+            }
+        })
+    }, function(err) {
+        res.send({
+            code: "6032",
+            data: null,
+            msg: "查询失败"
+        })
     })
 })
-
 
 module.exports = router;
