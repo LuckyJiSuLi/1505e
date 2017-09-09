@@ -38,7 +38,9 @@
         },
         methods: {
             ...mapActions({
-                changeList: action_type.HEADCHANGEDATA.actions
+                changeList: action_type.HEADCHANGEDATA.actions,
+                // 二级分类点击后改变面包屑数组
+                headbreadList: action_type.HEADBREADDATA.actions
             }),
             handleSelect(key, keyPath) {
                 console.log(key)
@@ -48,14 +50,16 @@
                         if (j.id == key) {
                             console.log(j)
                             var arr = [{
-                                cnname: i.cnname,
-                                oneId: i.id,
+                                cnname: i.onedata.cnname,
+                                oneId: i.onedata.id,
                                 twoId: null
                             }, {
                                 cnname: j.cnname,
                                 oneId: j.parent_id,
                                 twoId: j.id
                             }]
+                            console.log(arr)
+                            this.headbreadList(arr)
                         }
                     }.bind(this))
                 }, this);

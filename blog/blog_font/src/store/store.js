@@ -84,6 +84,11 @@ var store = new Vuex.Store({
         [action_type.SEARCHDATA.actions]({ dispatch, commit }, name) {
             commit(action_type.SEARCHDATA.mutations, name)
         },
+        //文章推荐列表
+        [action_type.RECOMMENDDATA.actions]({ dispatch, commit }, data) {
+            commit(action_type.RECOMMENDDATA.mutations)
+            commit(action_type.BREADCASTDATA.mutations, "index")
+        },
         //header点击更变数据
         [action_type.HEADCHANGEDATA.actions]({ dispatch, commit }, type) {
             commit(action_type.HEADCHANGEDATA.mutations, type)
@@ -92,6 +97,19 @@ var store = new Vuex.Store({
         [action_type.BREADCASTDATA.actions]({ dispatch, commit }, data) {
             commit(action_type.BREADCASTDATA.mutations)
         },
+        //头部二级分类点击时触发面包屑数组更变
+        [action_type.HEADBREADDATA.actions]({ dispatch, commit }, data) {
+            // 触发面包屑数组
+            commit(action_type.BREADCASTDATA.mutations, data)
+        },
+        //一级分类点击时触发面包屑数组更变
+        [action_type.HEADONECHANGEDATA.actions]({ dispatch, commit }, data) {
+            // 触发面包屑数组
+            commit(action_type.BREADCASTDATA.mutations, [data])
+                // 重新计算当前一级分类文章数
+            commit(action_type.HEADONECHANGEDATA.mutations, data.oneId)
+        },
+
 
 
     },
@@ -153,10 +171,18 @@ var store = new Vuex.Store({
             state.newlist = state.newlist.slice(0, 5)
             console.log(state.newlist)
         },
-        //header更变数据
+        //header二级分类点击更变文章数据
         [action_type.HEADCHANGEDATA.mutations](state, type) {
             state.articleList = state.articleAll.filter(function(i) {
                 return i.twoId == type
+            })
+            console.log(state.articleList)
+
+        },
+        //一级分类点击更变文章数据
+        [action_type.HEADONECHANGEDATA.mutations](state, type) {
+            state.articleList = state.articleAll.filter(function(i) {
+                return i.oneId == type
             })
             console.log(state.articleList)
 

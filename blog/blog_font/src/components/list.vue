@@ -11,7 +11,7 @@
 </el-row>
 
 <el-row v-for="i in datalist" class="classrow">
-    <router-link :to="{name:'detail',params:{id:i.id}}">
+    <router-link :to="{name:'detail',params:{id:i.id,onedata:{cnname:i.cnname_one,oneId:i.oneId,twoId:null},twodata:{cnname:i.cnname_two,oneId:i.oneId,twoId:i.twoId}}}">
          <el-col :span="6">{{i.article_name}}</el-col>
   <el-col :span="6">{{i.cnname_one}}</el-col>
   <el-col :span="6">{{i.editer}}</el-col>

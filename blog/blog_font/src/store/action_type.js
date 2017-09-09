@@ -43,5 +43,15 @@ module.exports = {
     BREADCASTDATA: {
         actions: "BREADCASTDATA_AC",
         mutations: "BREADCASTDATA_MU"
-    }
+    },
+    // 头部二级分类点击时面包屑数组的取值
+    HEADBREADDATA: {
+        actions: "HEADBREADDATA_AC",
+        mutations: "HEADBREADDATA_MU"
+    },
+    // 面包屑中点击一级分类改变面包屑数量和显示文章数量
+    HEADONECHANGEDATA: {
+        actions: "HEADONECHANGEDATA_AC",
+        mutations: "HEADONECHANGEDATA_MU"
+    },
 }
