@@ -1,23 +1,40 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+   
+    <router-view class="mainContent"></router-view>
+    <!--<footers></footers>-->
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+    import footers from "./components/footer"
+    export default {
+        name: 'app',
+        components: {
+            footers: footers
+        }
+    }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    #app {
+        min-height: 100%;
+        position: relative
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    a {
+        color: black;
+        text-decoration: none
+    }
+    
+    .mainContent {
+        min-height: 100%;
+        /*position: relative;*/
+    }
 </style>
