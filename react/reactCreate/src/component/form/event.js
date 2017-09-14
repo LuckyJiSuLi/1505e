@@ -1,31 +1,73 @@
 export default {
     type(event) {
-        if (event.target.id == "name") {
-            var state = /^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$/.test(event.target.value)
-            if (state) {
-                this.formHandle(event)
-            } else {
-                alert("格式不正确")
-            }
+        var obj = this.state[event.target.dataset.model]
+            // 清楚提示信息
+        let $p = event.target.parentNode.getElementsByTagName("p")[0]
+        if ($p !== undefined) {
+            event.target.parentNode.removeChild($p)
         }
-        if (event.target.id == "age") {
-            var state = /^[0-9]*$/.test(event.target.value)
+        obj.val = ""
+        this.setState({
+            [obj.name]: obj
+        })
+        if (event.target.value !== "" && event.target.value !== undefined) {
+            console.log(event.target.value)
+            var state = obj.reg.test(event.target.value)
+            console.log(state)
             if (state) {
-                this.formHandle(event)
+                this.formHandle(event, obj)
             } else {
-                alert("格式不正确")
+                let $p = document.createElement("p")
+                $p.style.color = "red"
+                $p.innerHTML = obj.msg
+                event.target.parentNode.appendChild($p)
             }
+        } else {
+
+            let $p = document.createElement("p")
+            $p.style.color = "red"
+            $p.innerHTML = "请输入内容"
+            event.target.parentNode.appendChild($p)
+
         }
 
+
+
     },
-    formHandle(event) {
+    formHandle(event, obj) {
+        obj.val = event.target.value
         this.setState({
-            [event.target.id]: event.target.value
+            [obj.name]: obj
         })
+    },
+    changeFn(event) {
+
+        if (event.target.type === "checkbox") {
+            var obj = this.state.love
+            obj[event.target.name].checked = event.target.checked
+            this.setState({
+                love: obj
+            })
+        } else {
+            this.setState({
+                [event.target.name]: event.target.value
+            })
+        }
 
     },
     submit() {
-        if (this.state.name && this.state.age) {
+        console.log(this.state.select)
+        console.log(this.state.ball)
+        console.log(this.state.sing)
+        var arr = []
+        this.state.love.forEach(function(i) {
+            if (i.checked) {
+                arr.push(i.cnname)
+            }
+        }, this);
+        console.log(arr)
+        if (this.state.name.val && this.state.age.val) {
+            console.log(this.state.select)
             alert("提交成功")
         } else {
             alert("请输入内容")
