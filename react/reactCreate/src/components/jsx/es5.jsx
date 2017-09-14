@@ -29,7 +29,7 @@ import React, { Component } from 'react'
 
 class Test extends Component{
     static defaultProps={
-        data:1
+        data:"111"
     }
     constructor(props){
       console.log("constructor")
@@ -64,7 +64,6 @@ class Test extends Component{
         })
       }.bind(this),1000)
       this.setState({time:time})
-
     }
     componentWillReceiveProps(news){
       console.log(news)

@@ -30,14 +30,7 @@ module.exports = {
             },
         ]
     },
-    devtool: "cheap-module-eval-source-map",
-    devServer: {
-        host: "localhost",
-        port: "9999",
-        hot: true,
-        contentBase: path.join(__dirname, "src/static"),
-        watchContentBase: true
-    },
+
     plugins: [
         new Webpack.optimize.UglifyJsPlugin(),
         new Webpack.HotModuleReplacementPlugin(),

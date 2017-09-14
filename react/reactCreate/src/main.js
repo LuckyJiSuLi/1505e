@@ -13,10 +13,10 @@ import ReactDOM from "react-dom"
 // tick()
 // },1000)
 
-import Index from "./components/index.jsx"
-import Tab from "./components/tab.jsx"
- ReactDOM.render(
-    <Index />,
+// import Index from "./components/jsx/index.jsx"
+// import Tab from "./components/jsx/tab.jsx"
+import Index from "./component/index"
+ReactDOM.render( <
+    Index / > ,
     document.getElementById('app')
 );
-
