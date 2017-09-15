@@ -4,27 +4,26 @@ import Condition from "../condition"
 import If_else from "../if_else"
 import List from "../list"
 import Form from "../form"
+import One from "../one"
+import Two from "../two"
 class Index extends Component {
     constructor(props) {
         super(props)
         this.state = {
-                name: "zhangsan",
-                data: 1,
-                objdata: {
-                    name: 1
-                }
+                name: "lisi",
+                // data: 1,
+                // objdata: {
+                //     name: 1
+                // }
             }
             //  console.log(this.handlefn)
-            // this.handlefn=this.handlefn.bind(this)
+            this.handlefn=this.handlefn.bind(this)
     }
     handlefn(i) {
-        console.log(this)
-        console.log(i)
-            // this.setState({
-            //   objdata:{
-            //     name:i
-            //   }
-            // })
+            console.log(this)
+            this.setState({
+                name:i
+            })
     }
     componentWillMount() {
         // console.log(this.handlefn)
@@ -39,15 +38,22 @@ class Index extends Component {
           </div>
         )
         }else{*/
-        return ( <
-                div >
-                <
-                span className = "weather" > 这里是首页 < /span> <
-                span > { this.state.objdata.name } < /span>   <
-                Form > < /Form> < /
-                div >
-            )
-            /*}*/
+        /* return ( <
+                 div >
+                 <
+                 span className = "weather" > 这里是首页 < /span> <
+                 span > { this.state.objdata.name } < /span>   <
+                 Form > < /Form> < /
+                 div >
+             )*/
+        /*}*/
+       
+        return (<div>
+            <One fn={this.handlefn}></One>
+            <span>{this.state.name}</span>
+            <Two dataname={this.state.name}></Two>
+        </div>)
+
 
     }
     componentDidMount() {
