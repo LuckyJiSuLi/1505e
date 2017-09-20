@@ -6,6 +6,7 @@ import List from "../list"
 import Form from "../form"
 import One from "../one"
 import Two from "../two"
+import Slot from "../slot"
 class Index extends Component {
     constructor(props) {
         super(props)
@@ -47,13 +48,36 @@ class Index extends Component {
                  div >
              )*/
         /*}*/
-       
+/*       
         return (<div>
             <One fn={this.handlefn}></One>
             <span>{this.state.name}</span>
             <Two dataname={this.state.name}></Two>
-        </div>)
+        </div>)*/
 
+// 内容分发
+        // var $true=<Slot>
+        //             <span>这里为true</span>
+                  
+        //         </Slot>
+        // var $false=<Slot>
+        //             <span>这里为false</span>
+        //         </Slot>
+
+        // return (
+
+        //     <div>
+        //        {this.state.state?$true:$false}
+        //     </div>
+        // )
+
+        var one= <span>这里为true</span>
+        var two=<span>这里为false</span>
+        return (
+            <div>
+                <Slot one={one} two={two}></Slot>
+            </div>
+        )
 
     }
     componentDidMount() {

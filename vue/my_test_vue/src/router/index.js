@@ -16,7 +16,7 @@ let register = resolve => require.ensure(['@/components/register'], () => resolv
 // let compfn = resolve => require.ensure(['@/components/compFn'], () => resolve(require('@/components/compFn')))
 let compfn = resolve => require(['@/components/compFn'], resolve)
 
-function aa () {
+function aa() {
 
 }
 Vue.use(Router)
@@ -37,6 +37,7 @@ export default new Router({
         path: '/register',
         name: 'register',
         component: register,
+
 
     }, {
         path: '/parent',

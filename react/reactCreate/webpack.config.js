@@ -2,7 +2,7 @@ var Webpack = require("webpack")
 var htmlWebpackPlugin = require("html-webpack-plugin")
 var path = require("path")
 module.exports = {
-    entry: __dirname + "/src/main.js",
+    entry: __dirname + "/fluxsrc/main.js",
     output: {
         path: __dirname + "/dist",
         filename: "[name].js",
@@ -35,7 +35,7 @@ module.exports = {
         host: "localhost",
         port: "9999",
         hot: true,
-        contentBase: path.join(__dirname, "src/static"),
+        contentBase: path.join(__dirname, "routeSrc/static"),
         watchContentBase: true
     },
     plugins: [
