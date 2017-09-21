@@ -1,19 +1,21 @@
 import React, { Component } from 'react'
-import {state,event,getdata} from "../tool/Flux.js"
+import {store} from "../tool/index.js"
 import Child from "./child.jsx"
 class Index extends Component{
   constructor(props){
         super(props)
-        // state.num++
-        // getdata().num++
+        this.listenfn=this.listenfn.bind(this)
         this.state={
-          num:getdata().num
+          num:store.getState().num
         }
-        event.$on("change",()=>{
-          this.setState({
-            num:getdata().num
-          })
-        })
+        store.subscribe(this.listenfn)
+        
+      
+  }
+  listenfn(){
+    this.setState({
+      num:store.getState().num
+    })
   }
   render(){
     return (
@@ -22,6 +24,9 @@ class Index extends Component{
           <Child></Child>
       </div>
     )
+  }
+  componentWillUnmount(){
+    store.unsubscribe(this.listenfn)
   }
 }
 

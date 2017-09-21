@@ -2,7 +2,7 @@ var Webpack = require("webpack")
 var htmlWebpackPlugin = require("html-webpack-plugin")
 var path = require("path")
 module.exports = {
-    entry: __dirname + "/fluxsrc/main.js",
+    entry: __dirname + "/reduxsrc/main.js",
     output: {
         path: __dirname + "/dist",
         filename: "[name].js",
