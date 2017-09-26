@@ -18,8 +18,25 @@ export const actionError = () => {
     }
 }
 
-// export const reqBanner = () => {
-//     return (dispatch) => {
-//         fetch("/some/path").then(()=>{})
-//     }
-// }
+
+
+// 异步action，都会返回一个函数，而不是对象
+export const reqBanner = () => {
+    return (dispatch) => {
+        dispatch(actionStart()) //开始数据请求
+        fetch("/some/path").then((res) => {
+            if (res.status == "200") {
+                res.json().then((data) => {
+
+                    dispatch(actionOk(data)) //数据请求成功
+                })
+
+            } else {
+                dispatch(actionError()) //数据请求失败
+            }
+        }).catch(() => {
+            dispatch(actionError()) //数据请求失败
+
+        })
+    }
+}

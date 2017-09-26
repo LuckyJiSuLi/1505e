@@ -4,5 +4,11 @@
         "stage-0",
         "react"
     ],
-    "plugins": ["transform-runtime", "transform-react-jsx"]
+    "plugins": [
+            "transform-runtime", 
+            "transform-react-jsx",
+            ["import", {
+                  libraryName: "antd-mobile",
+                  style: true, 
+            }]]
 }

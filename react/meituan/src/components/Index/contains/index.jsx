@@ -10,8 +10,8 @@ class Index extends Component{
   render(){
     return (
       <div>首页
-        
-        <Banner prop={this.props}></Banner>
+          <Banner></Banner>
+       
       </div>
     )
   }

@@ -1,14 +1,32 @@
 import { combineReducers } from "redux"
+import { I_SENDSTART, I_SENDOK, I_SENDERROR } from "./actionsTypes"
 const bannerInitial = {
-    num: 1
+    data: null,
+    state: false
 }
 
 export const bannerReducer = (state = bannerInitial, action) => {
-    const { type } = action
+    const { type, text } = action
     switch (type) {
-        default: {
-            return state
-        }
+        case I_SENDSTART:
+            {
+
+                return Object.assign({}, state, { state: "start" })
+            }
+        case I_SENDOK:
+            {
+
+                return Object.assign({}, state, { state: "ok", data: text.custom })
+            }
+        case I_SENDERROR:
+            {
+
+                return Object.assign({}, state, { state: "error" })
+            }
+        default:
+            {
+                return state
+            }
     }
 }
 
