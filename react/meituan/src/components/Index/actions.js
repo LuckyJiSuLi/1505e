@@ -1,5 +1,5 @@
-import { I_SENDSTART, I_SENDOK, I_SENDERROR } from "./actionsTypes"
-
+import { I_SENDSTART, I_SENDOK, I_SENDERROR,I_SEARCHSTATE,I_SEARCHDATA } from "./actionsTypes"
+import {reqDefault as footreq} from "../common/foot/actions.js"
 export const actionStart = () => {
     return {
         type: I_SENDSTART
@@ -19,12 +19,27 @@ export const actionError = () => {
 }
 
 
+export const searchState = () => {
+    return {
+        type: I_SEARCHSTATE
+    }
+}
+
+export const searchData = (id) => {
+    return {
+        type: I_SEARCHDATA,
+        text:id
+    }
+}
+
+
 
 // 异步action，都会返回一个函数，而不是对象
-export const reqBanner = () => {
+export const reqDefault = () => {
+  
     return (dispatch) => {
         dispatch(actionStart()) //开始数据请求
-        fetch("/some/path").then((res) => {
+        fetch("/index").then((res) => {
             if (res.status == "200") {
                 res.json().then((data) => {
 

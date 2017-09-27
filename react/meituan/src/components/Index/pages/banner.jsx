@@ -1,47 +1,42 @@
 import React, { Component } from 'react'
-import {reqBanner} from "../actions.js"
+
 import { Carousel, WhiteSpace, WingBlank  } from 'antd-mobile';
+
 
 import style from "../index.css"
 
 class Banner extends Component{
   constructor(props){
     super(props)
-      this.state = {
-        data: ['', '', ''],
-        initialHeight: 200,
-      }
+      
   }
-  componentDidMount() {
-    // simulate img loading
-    setTimeout(() => {
-      this.setState({
-        data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI'],
-      });
-    }, 100);
-  }
+ 
   beforeChange(from, to){
-    console.log(from,to)
+   
   }
   afterChange(from, to){
-    console.log(from,to)
+   
   }
   render(){
+    const {banner=[],state}=this.props.prop.index.default
+   
+    const list=banner.map((i,index)=>{
+        return <div className="v-item" className={style.bannerI} key={index}>
+                <img src={i.img} alt="" />
+                </div>
+    })
     return (
-           <WingBlank>
-            <div className="sub-title">normal</div>
+           <WingBlank style={{margin:0}}>
             <Carousel
               className="my-carousel"
-              autoplay={false}
+              autoplay={true}
               infinite
               selectedIndex={1}
               swipeSpeed={35}
               beforeChange={(from, to) => {this.beforeChange(from, to)}}
               afterChange={(from, to) => {this.afterChange(from, to)}}
             >
-                <div className="v-item" className={style.bannerI1}>Carousel 1</div>
-          <div className="v-item" className={style.bannerI2}>Carousel 2</div>
-          <div className="v-item" className={style.bannerI3}>Carousel 3</div>
+                {list}
             </Carousel>
        
        </WingBlank>

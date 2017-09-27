@@ -8,6 +8,7 @@ import store from "./store"
 
 // import 'antd-mobile/dist/antd-mobile.css';
 import 'antd/dist/antd.css';
+
 ReactDOM.render( 
     <Provider store = { store } > 
         { router } 
