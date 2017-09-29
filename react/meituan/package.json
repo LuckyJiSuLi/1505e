@@ -28,6 +28,7 @@
     "less-loader": "^4.0.5",
     "mockjs": "^1.0.1-beta3",
     "prop-types": "^15.5.10",
+    "rc-form": "^1.4.8",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",

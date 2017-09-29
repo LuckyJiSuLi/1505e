@@ -3,7 +3,8 @@ var htmlWebpackPlugin = require("html-webpack-plugin")
 var path = require("path")
 var  data=require("./data/index.js")
 var  footnav=require("./data/footnav.js")
-
+var url=require("url")
+var queryString=require("querystring")
 const svgSpriteDirs = [
   require.resolve('antd-mobile').replace(/warn\.js$/, ''), // antd-mobile 内置svg
   //path.resolve(__dirname, 'src/my-project-svg-foler'),  // 业务代码本地私有 svg 存放目录
@@ -68,6 +69,29 @@ module.exports = {
             app.get('/footnav', function(req, res) {
                 
                 res.json(footnav);
+            });
+            app.get('/getCode', function(req, res) {      
+                res.json({code:123456,state:"0"});
+            });
+            app.get('/yzCode', function(req, res) { 
+                const querys=queryString.parse(url.parse(req.url).query)
+                console.log(querys)
+                if(querys.code=="123456"){
+                     res.json({state:"ok"});
+                }else{
+                     res.json({state:"error"});
+                }
+               
+            });
+             app.get('/sendPS', function(req, res) { 
+                const querys=queryString.parse(url.parse(req.url).query)
+                console.log(querys)
+                if(querys.password=="12345678"){
+                     res.json({state:"ok"});
+                }else{
+                     res.json({state:"error"});
+                }
+               
             });
         }
     },

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 import { Carousel, WhiteSpace, WingBlank  } from 'antd-mobile';
 
-
 import style from "../index.css"
 
 class Banner extends Component{

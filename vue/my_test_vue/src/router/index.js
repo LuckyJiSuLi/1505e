@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import ifElse from '@/components/ifElse.vue'
 import component from '@/components/component.vue'
 // import register from '@/components/register.vue'
