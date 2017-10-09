@@ -5,6 +5,7 @@ var  data=require("./data/index.js")
 var  footnav=require("./data/footnav.js")
 var url=require("url")
 var queryString=require("querystring")
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 const svgSpriteDirs = [
   require.resolve('antd-mobile').replace(/warn\.js$/, ''), // antd-mobile 内置svg
   //path.resolve(__dirname, 'src/my-project-svg-foler'),  // 业务代码本地私有 svg 存放目录
@@ -63,11 +64,11 @@ module.exports = {
         watchContentBase: true,
         setup: function(app) {
             app.get('/index', function(req, res) {
-                
+                res.header("Access-Control-Allow-Origin","*")
                 res.json(data);
             });
             app.get('/footnav', function(req, res) {
-                
+                res.header("Access-Control-Allow-Origin","*")
                 res.json(footnav);
             });
             app.get('/getCode', function(req, res) {      
@@ -106,7 +107,15 @@ module.exports = {
         new htmlWebpackPlugin({
             template: "./index.html",
 
-        })
+        }),
+        // 拷贝静态文件夹
+        new CopyWebpackPlugin([
+        {   
+            from: __dirname+'/static/static',
+            to: __dirname + "/dist" ,
+            ignore: ['.*']
+        }
+        ])
 
     ]
 

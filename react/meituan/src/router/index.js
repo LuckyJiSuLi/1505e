@@ -4,6 +4,8 @@ import {Index} from "../components/Index"
 import {Register} from "../components/register"
 import {Login} from "../components/login"
 
+// 配置路由信息
+
 const route = 
     <Router history={hashHistory}  >
         {/*<IndexRoute component={Register}></IndexRoute>*/}

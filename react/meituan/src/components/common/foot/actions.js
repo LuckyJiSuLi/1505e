@@ -24,6 +24,7 @@ export const actionError = () => {
 export const reqDefault = () => {
     return (dispatch) => {
         dispatch(actionStart()) //开始数据请求
+        //  fetch("http://localhost:9999/footnav").then((res) => {
         fetch("/footnav").then((res) => {
             if (res.status == "200") {
                 res.json().then((data) => {

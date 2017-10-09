@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 
+// 使用antd框架的组件
 import { Carousel, WhiteSpace, WingBlank  } from 'antd-mobile';
 
-
+// 引入当前模块的整体样式
 import style from "../index.css"
 
 class Banner extends Component{
@@ -18,6 +19,7 @@ class Banner extends Component{
    
   }
   render(){
+    // 数据由容器组件传递下来
     const {banner=[],state}=this.props.prop.index.default
    
     const list=banner.map((i,index)=>{
